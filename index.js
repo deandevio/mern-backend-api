@@ -1,6 +1,7 @@
 import express from "express";
 import "dotenv/config";
 import dbConnection from "./config/db.js";
+import router from "./router/routes.js";
 
 const app = express();
 
@@ -8,9 +9,7 @@ app.use(express.json());
 
 dbConnection();
 
-app.get("/", (req, res) => {
-  res.status(200).send({ success: true });
-});
+app.use("/", router);
 
 const PORT = process.env.PORT || 5000;
 
